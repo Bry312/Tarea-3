@@ -215,7 +215,7 @@ estadisticas_policiales %>%
   ))
 ```
 
-### Grafico de Ddelitos
+### Grafico de Delitos
 
 ```{r}
 ggplot2_barras_proporcion <-
@@ -233,17 +233,40 @@ ggplotly(ggplot2_barras_proporcion) %>% config(locale = 'es')
 ### Grafico por victima
 ```{r}
 
+# ggplotly - Gráfico de barras simples con valores de conteo
+ggplot2_barras_conteo <-
+  cantones %>%
+  ggplot(aes(x = "Victima", y = "Delito")) +
+  geom_bar(stat = "summary", fun.y = "mean") +
+  ggtitle("Delitos por victimas") +
+  xlab("Delito") +
+  ylab("Victima") +
+  theme_minimal()
+
+ggplotly(ggplot2_barras_conteo) %>% config(locale = 'es')
+
 ```
 
 
 ### Grafico por mes 
 ```{r}
 
+ggplot2_histograma_estadisticas_policiales <-
+  estadisticas_policiales %>%  
+  ggplot(aes(x = Fecha)) +
+  geom_histogram(binwidth = 80) + 
+  ggtitle("Delitos por Mes") +
+  xlab("Fecha") +
+  ylab("Cantidad de Delitos") +
+  theme_minimal()
+
+ggplotly(ggplot2_histograma_estadisticas_policiales) %>% config(locale = 'es')  
 ```
 
 
 ### Grafico barras apiladas
 ```{r}
+
 ggplot2_barras_apiladas_cantidad <-
   estadisticas_policiales %>%
   ggplot(aes(x = Delito, fill = Genero)) +
