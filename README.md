@@ -222,18 +222,20 @@ ggplotly(ggplot2_barras_proporcion) %>% config(locale = 'es')
 
 ### Grafico por victima
 ```{r}
+delitos_tipo <-
+  delitos %>%
+  count(Victima) %>%
+  ggplot(aes(x = reorder(Victima, n), y = n)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Delitos por tipo") +
+  xlab("Tipo de delito") +
+  ylab("Victimas") +
+  coord_flip() 
 
-# ggplotly - Gráfico de barras simples con valores de conteo
-ggplot2_barras_conteo <-
-  cantones %>%
-  ggplot(aes(x = "Victima", y = "Delito")) +
-  geom_bar(stat = "summary", fun.y = "mean") +
-  ggtitle("Delitos por victimas") +
-  xlab("Delito") +
-  ylab("Victima") +
-  theme_minimal()
+delitos_tipo %>%
+  ggplotly() %>%
+  config(locale = 'es')
 
-ggplotly(ggplot2_barras_conteo) %>% config(locale = 'es')
 
 ```
 
