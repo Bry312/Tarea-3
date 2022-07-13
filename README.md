@@ -1,16 +1,5 @@
 # Tarea-3
----
-title: "index"
-author: "Bry"
-date: '2022-07-11'
-output: 
-  html_document:
-    theme: readable    
-    toc: true
-    toc_depth: 5
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
+
 ---
 
 ```{r setup, include=FALSE}
